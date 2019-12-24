@@ -52,7 +52,7 @@ module.exports = (phase, { defaultConfig }) => {
         // 生产环境
         nextConfig.poweredByHeader = false
         nextConfig.generateEtags = false
-        nextConfig.assetPrefix = 'http://127.0.0.1:3000'
+        nextConfig.assetPrefix = 'https://nextjs-pi-gules.now.sh'
     }
     // To fall back to the default
     // return null
