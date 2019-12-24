@@ -9,6 +9,7 @@ import { format } from 'url'
 import Person from '../components/Person'
 import fetch from 'isomorphic-unfetch'
 import styled from 'styled-components'
+import { CURRENT_URL } from '../../utils/consts'
 
 const Title = styled.h1`
   font-size: 50px;
@@ -146,7 +147,7 @@ const Home = ({ initialPropsCounter, router, people }) => (
 )
 Home.getInitialProps = async ({ res }) => {
     console.log('index.js - getInitialProps')
-    const response = await fetch('http://localhost:3000/api/people')
+    const response = await fetch(CURRENT_URL + 'api/people')
     console.log('index.js - response')
     const people = await response.json()
     console.log('index.js - people', people.length)

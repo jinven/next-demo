@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
+import { CURRENT_URL } from '../../utils/consts'
 
 const UsersPage = ({ users }) => (
   <ul>
@@ -14,7 +15,7 @@ const UsersPage = ({ users }) => (
 )
 
 UsersPage.getInitialProps = async () => {
-  const response = await fetch('http://localhost:3000/api/users')
+  const response = await fetch(CURRENT_URL + 'api/users')
   const users = await response.json()
 
   return { users }
