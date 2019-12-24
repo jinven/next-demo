@@ -1,19 +1,43 @@
 {
-    "name": "create-next-example-app",
-    "description": "A Next.js starter app.",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/zeit/now-examples/tree/master/nextjs"
-    },
-    "license": "MIT",
-    "scripts": {
-      "dev": "next",
-      "build": "next build",
-      "start": "next start"
-    },
-    "dependencies": {
-      "next": "^9.0.2",
-      "react": "^16.8.6",
-      "react-dom": "^16.8.6"
-    }
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "dev-http": "node server-http.js",
+    "dev-express": "node server-express.js",
+    "dev-hapi": "node server-hapi.js",
+    "dev-koa": "node server-koa.js",
+    "dev-ssr": "node server-ssr-caching.js",
+    "dev-asset": "node server-asset.js",
+    "build": "next build",
+    "start": "next start",
+    "analyze": "cross-env ANALYZE=true yarn build"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^18.4.0",
+    "@next/bundle-analyzer": "^9.1.6",
+    "@zeit/next-sass": "^1.0.1",
+    "apollo-server-micro": "^2.9.14",
+    "cacheable-response": "^1.10.0",
+    "cross-env": "^6.0.3",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "koa": "^2.11.0",
+    "koa-router": "^7.4.0",
+    "micro": "^9.3.4",
+    "micro-cors": "^0.1.1",
+    "next": "9.1.6",
+    "node-sass": "^4.13.0",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-do-expressions": "^7.7.4",
+    "cowsay-browser": "^1.1.8",
+    "isomorphic-unfetch": "^3.0.0",
+    "micro": "^9.3.4",
+    "nprogress": "^0.2.0"
   }
+}
