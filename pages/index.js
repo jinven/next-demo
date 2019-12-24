@@ -9,7 +9,7 @@ import { format } from 'url'
 import Person from '../components/Person'
 import fetch from 'isomorphic-unfetch'
 import styled from 'styled-components'
-import { CURRENT_URL } from '../../utils/consts'
+import { CURRENT_URL } from '../utils/consts'
 
 const Title = styled.h1`
   font-size: 50px;

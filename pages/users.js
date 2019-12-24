@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
-import { CURRENT_URL } from '../../utils/consts'
+import { CURRENT_URL } from '../utils/consts'
 
 const UsersPage = ({ users }) => (
   <ul>

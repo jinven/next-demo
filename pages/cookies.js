@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-unfetch'
-import { CURRENT_URL } from '../../utils/consts'
+import { CURRENT_URL } from '../utils/consts'
 
 const CookiePage = ({ cookie }) => <div>{`Cookie from response: ${cookie}`}</div>
 
