@@ -1,0 +1,14 @@
+node_modules
+package-lock.json
+.next
+.next-dev
+dist
+.DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+.deploy*/
+/public
+.git
+.github

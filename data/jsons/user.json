@@ -1,0 +1,25 @@
+{
+  "nested": {
+    "userpackage": {
+      "nested": {
+        "User": {
+          "fields": {
+            "name": {
+              "type": "string",
+              "id": 1
+            },
+            "id": {
+              "type": "int32",
+              "id": 2
+            },
+            "email": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 3
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -29,19 +29,36 @@ Router.events.on('routeChangeError', (err, url) => {
 //     return true
 // })
 
+let isProtobuf = true;
 export default class MyApp extends App {
   static async getInitialProps(appContext) {
-    console.log('_app.js - getInitialProps');
+    // 服务端调用
+    isProtobuf = appContext.router.pathname==='/protobuf'
+    console.log('_app.js - getInitialProps', appContext.router.pathname, isProtobuf);
     const appProps = await App.getInitialProps(appContext);
     return {...appProps}
+  }
+  constructor(props){
+    super(props)
+    this.state = {
+      isProtobuf: false
+    }
   }
   componentDidCatch(error, errorInfo) {
     console.log('CUSTOM ERROR HANDLING', error)
     // This is needed to render errors correctly in development / production
     super.componentDidCatch(error, errorInfo)
   }
+  componentDidMount() {
+    // 此方法只在客户端调用
+    isProtobuf = window.location.pathname==='/protobuf'
+    console.log('_app.js componentDidMount', isProtobuf)
+    this.setState({isProtobuf: isProtobuf})
+  }
   render() {
     const { Component, pageProps } = this.props
+    isProtobuf = this.state.isProtobuf
+    console.log('_app.js - render', isProtobuf)
     return (
       <ThemeProvider theme={theme}>
         <Head>
@@ -57,13 +74,20 @@ export default class MyApp extends App {
           <Link href="/">
             <a>Home</a>
           </Link>
-          <Link href="/about">
-            <a>About</a>
-          </Link>
-          <Link href="/forever">
-            <a>Forever</a>
-          </Link>
-          <a href="/non-existing">Non Existing Page</a>
+          {
+            !isProtobuf &&
+            <>
+              <Link href="/about">
+                <a>About</a>
+              </Link>
+              <Link href="/forever">
+                <a>Forever</a>
+              </Link>
+              <Link href="/non-existing">
+                <a>Non Existing Page</a>
+              </Link>
+            </>
+          }
         </nav>
         <Component {...pageProps} />
       </ThemeProvider>
