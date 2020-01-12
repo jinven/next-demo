@@ -76,6 +76,7 @@ const Home = ({ initialPropsCounter, router, people }) => (
                     <li><Link href="/scss"><a>/scss</a></Link></li>
                     <li><Link href="/babel"><a>/babel</a></Link></li>
                     <li><Link href="/customkey"><a>/customkey</a></Link></li>
+                    <li><Link href="/protobuf"><a>/protobuf</a></Link></li>
                     <li><ReadMore /></li>
                     {
                       people.map((p, i) => (
