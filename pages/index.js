@@ -148,17 +148,17 @@ const Home = ({ initialPropsCounter, router, people }) => (
 )
 Home.getInitialProps = async ({ res }) => {
     console.log('index.js - getInitialProps')
-    const response = await fetch(CURRENT_URL + 'api/people')
-    console.log('index.js - response')
-    const people = await response.json()
-    console.log('index.js - people', people.length)
-    if(res){
-        return { initialPropsCounter: 1, people: people || [] }
-    }
+    // const response = await fetch(CURRENT_URL + 'api/people')
+    // console.log('index.js - response')
+    // const people = await response.json()
+    // console.log('index.js - people', people.length)
+    // if(res){
+    //     return { initialPropsCounter: 1, people: people || [] }
+    // }
     counter++
     return {
         initialPropsCounter: counter,
-        people: people || []
+        people: []
     }
 }
 export default withRouter(Home)
