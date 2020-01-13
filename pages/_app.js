@@ -29,19 +29,19 @@ Router.events.on('routeChangeError', (err, url) => {
 //     return true
 // })
 
-let isProtobuf = true;
+let isHome = false;
 export default class MyApp extends App {
   static async getInitialProps(appContext) {
     // 服务端调用
-    isProtobuf = appContext.router.pathname==='/protobuf'
-    console.log('_app.js - getInitialProps', appContext.router.pathname, isProtobuf);
+    isHome = ['','/','/index','/index/'].indexOf((appContext.router.pathname || '').toLocaleLowerCase())>=0
+    console.log('_app.js - getInitialProps', appContext.router.pathname, isHome);
     const appProps = await App.getInitialProps(appContext);
     return {...appProps}
   }
   constructor(props){
     super(props)
     this.state = {
-      isProtobuf: false
+      isHome: false
     }
   }
   componentDidCatch(error, errorInfo) {
@@ -51,14 +51,14 @@ export default class MyApp extends App {
   }
   componentDidMount() {
     // 此方法只在客户端调用
-    isProtobuf = window.location.pathname==='/protobuf'
-    console.log('_app.js componentDidMount', isProtobuf)
-    this.setState({isProtobuf: isProtobuf})
+    isHome = ['','/','/index','/index/'].indexOf((window.location.pathname || '').toLocaleLowerCase())>=0
+    console.log('_app.js componentDidMount', isHome)
+    this.setState({isHome: isHome})
   }
   render() {
     const { Component, pageProps } = this.props
-    isProtobuf = this.state.isProtobuf
-    console.log('_app.js - render', isProtobuf)
+    isHome = this.state.isHome
+    console.log('_app.js - render', isHome)
     return (
       <ThemeProvider theme={theme}>
         <Head>
@@ -75,7 +75,7 @@ export default class MyApp extends App {
             <a>Home</a>
           </Link>
           {
-            !isProtobuf &&
+            isHome &&
             <>
               <Link href="/about">
                 <a>About</a>

@@ -2,6 +2,7 @@ import { ApolloServer, gql } from 'apollo-server-micro'
 
 const typeDefs = gql`
   type Query {
+    hello: String
     users: [User!]!
   }
   type User {
@@ -11,6 +12,9 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
+    hello: () => {
+      return 'Hello world!'
+    },
     users(parent, args, context) {
       return [{ name: 'Nextjs' }]
     },
