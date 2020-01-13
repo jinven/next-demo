@@ -11,9 +11,10 @@ import fetch from 'isomorphic-unfetch'
 import styled from 'styled-components'
 import { CURRENT_URL } from '../utils/consts'
 
-const Title = styled.h1`
+const Title = styled.span`
   font-size: 50px;
   color: ${({ theme }) => theme.colors.primary};
+  text-align: center;
 `
 let counter = 1
 const reload = () => {
@@ -44,17 +45,17 @@ const Home = ({ initialPropsCounter, router, people }) => (
                 <button onClick={()=>reload()}>重新加载</button>
                 <button onClick={()=>incrementStateCounter(router)}>改变Counter</button>
                 <p>getInitialProps 执行了 {initialPropsCounter} 次</p>
-                <p>Counter: {router.query.counter}</p>
+                <p>Counter: {router.query.counter || 0}</p>
             </div>
             <div style={{textAlign:'center'}}>
                 <ul>
-                    <li><a href="/CowsayHi">CowsayHi</a></li>
-                    <li><Link href="/HelloWorld" replace><a>HelloWorld</a></Link></li>
-                    <li><Link href="/HiThere"><img src="favicon.ico" alt="image" /></Link></li>
-                    <li><a href="/MyImage">MyImage</a></li>
+                    <li><a href="/cowsayhi">CowsayHi</a></li>
+                    <li><Link href="/helloworld" replace><a>HelloWorld</a></Link></li>
+                    <li><Link href="/hithere"><img src="favicon.ico" alt="image" /></Link></li>
+                    <li><a href="/myimage">MyImage</a></li>
                     <li><a href="/post/1">/post/1</a></li>
                     <li><Link href={{ pathname: '/post/2', query: { name: 'zeit' } }}><a>/post/2</a></Link></li>
-                    <li><Link href="/post/[pid]" as="/post/abc"><a>First Post</a></Link></li>
+                    <li><Link href="/post/[pid]" as="/post/abc"><a>/post/abc</a></Link></li>
                     <li><a href="/post/pid/comment">/post/pid/comment</a></li>
                     <li><a href="/head">/head</a></li>
                     <li><a href="/fetch">/fetch</a></li>
@@ -101,7 +102,6 @@ const Home = ({ initialPropsCounter, router, people }) => (
           cursor:pointer;
       }
       .title {
-        margin: 0;
         width: 100%;
         line-height: 1.15;
         font-size: 48px;
