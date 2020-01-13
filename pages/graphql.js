@@ -3,9 +3,10 @@ import fetch from 'isomorphic-unfetch'
 import { CURRENT_URL } from '../utils/consts'
 
 const serverQuery = JSON.stringify({ query: '{ users { name } }' })
-const clientQuery = JSON.stringify({ query: '{ hello }'})
+const clientQuery = JSON.stringify({ query: '{ hello, users { name } }'})
 const GraphqlPage = function({ users }) {
   const [result, setResult] = useState({})
+  const [nextResult, setNextResult] = useState({})
   const fetchResult = async () => {
     const response = await fetch('api/graphql', {
       method: 'POST',
@@ -17,10 +18,21 @@ const GraphqlPage = function({ users }) {
     const { data } = await response.json()
     setResult(data)
   }
+  const fetchNextResult = async () => {
+    const response = await fetch('api/graphql/next', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: clientQuery
+    })
+    const { data } = await response.json()
+    setNextResult(data)
+  }
   return (
     <div>
       <h1>Graphql 测试</h1>
-      <a href="/api/graphql?query={hello}" target="_blank">内置客户端：/api/graphql</a>
+      <a href="/api/graphql?query={hello}" target="_blank">本地运行内置客户端：/api/graphql</a>
       <div>
         <hr />
         <h2>服务端定义</h2>
@@ -62,7 +74,22 @@ Query: {
       </div>
       <div style={{marginTop: 50}}>
         <hr />
-        <h2>客户端API获取数据</h2>
+        <h2>客户端API获取数据 - 使用 Next Api</h2>
+        <p>请求参数：</p>
+        <div className="graphql-query">
+          {clientQuery}
+        </div>
+        <p>
+          <button onClick={fetchNextResult}>获取数据</button>
+        </p>
+        <p>返回结果：</p>
+        <div className="graphql-query">
+            {JSON.stringify(nextResult)}
+        </div>
+      </div>
+      <div style={{marginTop: 50}}>
+        <hr />
+        <h2>客户端API获取数据 - 使用 ApolloServer</h2>
         <p>请求参数：</p>
         <div className="graphql-query">
           {clientQuery}

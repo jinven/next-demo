@@ -69,8 +69,8 @@ const Home = ({ initialPropsCounter, router, people }) => (
                     <li><Link href="/blog?id=first" as="/blog/first"><a>My first blog post</a></Link></li>
                     <li><Link href="/blog?id=second" as="/blog/second"><a>My second blog post</a></Link></li>
                     <li><Link href="/blog?id=last" as="/blog/last"><a>My last blog post</a></Link></li>
-                    <li><Link scroll={false} href="/?counter=10"><a>Disables scrolling</a></Link></li>
-                    <li><Link href="/?counter=10"><a>Changes with scrolling to top</a></Link></li>
+                    <li><Link scroll={false} href="/?counter=10"><a>不滚动</a></Link></li>
+                    <li><Link href="/?counter=10"><a>滚动到顶部</a></Link></li>
                     <li><Link href="/dynamic"><a>/dynamic</a></Link></li>
                     <li><Link href="/error"><a>/error</a></Link></li>
                     <li><Link href="/faker"><a>/faker</a></Link></li>
