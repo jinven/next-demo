@@ -72,19 +72,19 @@ export default class MyApp extends App {
             }
           `}</style>
           <Link href="/">
-            <a>Home</a>
+            <a>主页</a>
           </Link>
           {
             isHome &&
             <>
               <Link href="/about">
-                <a>About</a>
+                <a>关于页面</a>
               </Link>
               <Link href="/forever">
                 <a>Forever</a>
               </Link>
               <Link href="/non-existing">
-                <a>Non Existing Page</a>
+                <a>不存在的页面</a>
               </Link>
             </>
           }

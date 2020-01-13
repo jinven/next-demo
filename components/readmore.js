@@ -10,7 +10,7 @@ const handler = () => {
 function ReadMore() {
     return (
         <div>
-            Click <span onClick={handler}>here</span> to read more
+            点击 <span onClick={handler}>这里</span> 查看关于页面
             <style jsx>{`
                 span {
                     color: #28f;

@@ -34,17 +34,17 @@ const Home = ({ initialPropsCounter, router, people }) => (
             <title>Home</title>
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Nav />
+        {/* <Nav /> */}
         <div className="hero">
-            <h1 className="title"><Title>Welcome to Next.js!</Title></h1>
+            <h1 className="title"><Title>欢迎!</Title></h1>
             <p className="description">
-                To get started, edit <code>pages/index.js</code> and save to reload.
+                已开始, 编辑 <code>pages/index.js</code> 页面并保存，会自动加载
             </p>
             <div className="shallow-routing">
-                <button onClick={()=>reload()}>Reload</button>
-                <button onClick={()=>incrementStateCounter(router)}>Change State Counter</button>
-                <p>"getInitialProps" ran for "{initialPropsCounter}" times.</p>
-                <p>Counter: "{router.query.counter}".</p>
+                <button onClick={()=>reload()}>重新加载</button>
+                <button onClick={()=>incrementStateCounter(router)}>改变Counter</button>
+                <p>getInitialProps 执行了 {initialPropsCounter} 次</p>
+                <p>Counter: {router.query.counter}</p>
             </div>
             <div style={{textAlign:'center'}}>
                 <ul>
@@ -85,12 +85,12 @@ const Home = ({ initialPropsCounter, router, people }) => (
                     }
                 </ul>
             </div>
-            <div className="row">
+            {/* <div className="row">
                 <a href="https://nextjs.org/docs" className="card">
                     <h3>Documentation &rarr;</h3>
                     <p>Learn more about Next.js in the documentation.</p>
                 </a>
-            </div>
+            </div> */}
         </div>
         <style jsx>{`
       .hero {
@@ -103,7 +103,6 @@ const Home = ({ initialPropsCounter, router, people }) => (
       .title {
         margin: 0;
         width: 100%;
-        padding-top: 80px;
         line-height: 1.15;
         font-size: 48px;
       }
@@ -113,6 +112,24 @@ const Home = ({ initialPropsCounter, router, people }) => (
       }
       .shallow-routing{
           text-align: center;
+      }
+      ul{
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      li{
+        margin: 0 5px 5px 0;
+        display: inline-block;
+      }
+      li a{
+        display: inline-block;
+        background-color: #efdd9b;
+        border-radius: 3px;
+        padding: 5px 10px;
+      }
+      ul, li{
+        list-style:none;
+        padding: 0;
       }
       .row {
         max-width: 880px;

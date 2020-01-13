@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ForeverPage = () => <p>This page was rendered for a while!</p>
+const ForeverPage = () => <p>3秒后渲染此页</p>
 
 ForeverPage.getInitialProps = async () => {
   await new Promise(resolve => {
