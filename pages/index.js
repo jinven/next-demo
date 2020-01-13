@@ -52,7 +52,7 @@ const Home = ({ initialPropsCounter, router, people }) => (
                     <li><a href="/cowsayhi">CowsayHi</a></li>
                     <li><Link href="/helloworld" replace><a>HelloWorld</a></Link></li>
                     <li><Link href="/hithere"><img src="favicon.ico" alt="image" /></Link></li>
-                    <li><a href="/myimage">MyImage</a></li>
+                    <li><a href="/myimage">/myimage</a></li>
                     <li><a href="/post/1">/post/1</a></li>
                     <li><Link href={{ pathname: '/post/2', query: { name: 'zeit' } }}><a>/post/2</a></Link></li>
                     <li><Link href="/post/[pid]" as="/post/abc"><a>/post/abc</a></Link></li>
@@ -62,22 +62,23 @@ const Home = ({ initialPropsCounter, router, people }) => (
                     <li><a href="/posts">/posts</a></li>
                     <li><LinkButton href="/helloua" /></li>
                     <li><a href="/cookies">/cookies</a></li>
-                    <li><a href="/graphql">/graphql</a></li>
                     <li><a href="/users">/users</a></li>
                     <li><Link href="/a"><a>/a</a></Link></li>
                     <li><Link href="/b"><a>/b</a></Link></li>
-                    <li><Link href="/blog?id=first" as="/blog/first"><a>My first blog post</a></Link></li>
-                    <li><Link href="/blog?id=second" as="/blog/second"><a>My second blog post</a></Link></li>
-                    <li><Link href="/blog?id=last" as="/blog/last"><a>My last blog post</a></Link></li>
+                    <li><Link href="/blog?id=first" as="/blog/first"><a>/blog?id=first</a></Link></li>
+                    <li><Link href="/blog?id=second" as="/blog/second"><a>/blog?id=second</a></Link></li>
+                    <li><Link href="/blog?id=last" as="/blog/last"><a>/blog?id=last</a></Link></li>
                     <li><Link scroll={false} href="/?counter=10"><a>不滚动</a></Link></li>
                     <li><Link href="/?counter=10"><a>滚动到顶部</a></Link></li>
-                    <li><Link href="/dynamic"><a>/dynamic</a></Link></li>
-                    <li><Link href="/error"><a>/error</a></Link></li>
-                    <li><Link href="/faker"><a>/faker</a></Link></li>
-                    <li><Link href="/scss"><a>/scss</a></Link></li>
-                    <li><Link href="/babel"><a>/babel</a></Link></li>
-                    <li><Link href="/customkey"><a>/customkey</a></Link></li>
-                    <li><Link href="/protobuf"><a>/protobuf</a></Link></li>
+                    <li><Link href="/dynamic"><a>动态页面</a></Link></li>
+                    <li><Link href="/error"><a>error</a></Link></li>
+                    <li><Link href="/faker"><a>faker</a></Link></li>
+                    <li><Link href="/scss"><a>scss</a></Link></li>
+                    <li><Link href="/babel"><a>babel</a></Link></li>
+                    <li><Link href="/customkey"><a>customkey</a></Link></li>
+                    <li style={{marginTop: 30}}><Link href="/graphql"><a>graphql</a></Link></li>
+                    <li><Link href="/protobuf"><a>protobuf</a></Link></li>
+                    <li><Link href="/cssimage"><a>css图形</a></Link></li>
                     <li><ReadMore /></li>
                     {
                       people.map((p, i) => (
