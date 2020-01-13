@@ -20,7 +20,7 @@ const GraphqlPage = function({ users }) {
   return (
     <div>
       <h1>Graphql 测试</h1>
-      <a href="/api/graphql" target="_blank">内置客户端：/api/graphql</a>
+      <a href="/api/graphql?query={hello}" target="_blank">内置客户端：/api/graphql</a>
       <div>
         <hr />
         <h2>服务端定义</h2>
