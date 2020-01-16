@@ -78,7 +78,11 @@ const Home = ({ initialPropsCounter, router, people }) => (
                     <li><Link href="/customkey"><a>customkey</a></Link></li>
                     <li style={{marginTop: 30}}><Link href="/graphql"><a>graphql</a></Link></li>
                     <li><Link href="/protobuf"><a>protobuf</a></Link></li>
-                    <li><Link href="/cssimage"><a>css图形</a></Link></li>
+                    <li><Link href="/gif"><a>canvas2gif</a></Link></li>
+                    <li><Link href="/aslider"><a>滑块过渡</a></Link></li>
+                    <li><Link href="/graphics"><a>数学图形</a></Link></li>
+                    <li><Link href="/canvasround"><a>canvas圆角</a></Link></li>
+                    <li><Link href="/3d"><a>3d</a></Link></li>
                     <li><ReadMore /></li>
                     {
                       people.map((p, i) => (
@@ -86,6 +90,13 @@ const Home = ({ initialPropsCounter, router, people }) => (
                       ))
                     }
                 </ul>
+                <div>
+                  <h3>收集</h3>
+                  <ul>
+                    <li><Link href="/cssimage"><a>css图形</a></Link></li>
+                    <li><Link href="/3dbutterfly"><a>3d蝴蝶</a></Link></li>
+                  </ul>
+                </div>
             </div>
             {/* <div className="row">
                 <a href="https://nextjs.org/docs" className="card">

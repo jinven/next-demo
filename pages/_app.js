@@ -65,7 +65,7 @@ export default class MyApp extends App {
           {/* Import CSS for nprogress */}
           <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         </Head>
-        <nav>
+        <nav style={{ position: 'relative', zIndex: 99999 }}>
           <style jsx>{`
             a {
               margin: 0 10px 0 0;
