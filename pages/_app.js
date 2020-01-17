@@ -17,8 +17,8 @@ Router.events.on('routeChangeStart', url => {
 })
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', (err, url) => {
-    console.log('routeChangeError: ' + url, err)
-    NProgress.done()
+  console.log('routeChangeError: ' + url, err)
+  NProgress.done()
 })
 // Router.beforePopState(({ user, as, options }) => {
 //     console.log('beforePopState')
@@ -29,18 +29,21 @@ Router.events.on('routeChangeError', (err, url) => {
 //     return true
 // })
 
-let isHome = false;
+let isHome = false
+let isCanvas = false
 export default class MyApp extends App {
   static async getInitialProps(appContext) {
     // 服务端调用
-    isHome = ['','/','/index','/index/'].indexOf((appContext.router.pathname || '').toLocaleLowerCase())>=0
+    isHome = ['', '/', '/index', '/index/'].indexOf((appContext.router.pathname || '').toLocaleLowerCase()) >= 0
+    isCanvas = (appContext.router.pathname || '').indexOf('/canvas/') >= 0
     console.log('_app.js - getInitialProps', appContext.router.pathname, isHome);
     const appProps = await App.getInitialProps(appContext);
-    return {...appProps}
+    return { ...appProps }
   }
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
+      isCanvas: false,
       isHome: false,
       isClient: false
     }
@@ -52,9 +55,14 @@ export default class MyApp extends App {
   }
   componentDidMount() {
     // 此方法只在客户端调用
-    isHome = ['','/','/index','/index/'].indexOf((window.location.pathname || '').toLocaleLowerCase())>=0
+    isHome = ['', '/', '/index', '/index/'].indexOf((window.location.pathname || '').toLocaleLowerCase()) >= 0
+    isCanvas = (window.location.pathname || '').indexOf('/canvas/') >= 0
     console.log('_app.js componentDidMount', isHome)
-    this.setState({isHome: isHome, isClient: true})
+    this.setState({
+      isCanvas: isCanvas,
+      isHome: isHome,
+      isClient: true
+    })
   }
   componentDidUpdate() {
     console.log('_app.js - componentDidUpdate')
@@ -64,10 +72,12 @@ export default class MyApp extends App {
   }
   render() {
     const { Component, pageProps } = this.props
-    if(this.state.isClient){
-      isHome = ['','/','/index','/index/'].indexOf((window.location.pathname || '').toLocaleLowerCase())>=0
+    if (this.state.isClient) {
+      isHome = ['', '/', '/index', '/index/'].indexOf((window.location.pathname || '').toLocaleLowerCase()) >= 0
+      isCanvas = (window.location.pathname || '').indexOf('/canvas/') >= 0
     } else {
       isHome = this.state.isHome
+      isCanvas = this.state.isCanvas
     }
     console.log('_app.js - render', isHome)
     return (
@@ -109,6 +119,12 @@ export default class MyApp extends App {
           <Link href="/">
             <a>主页</a>
           </Link>
+          {
+            isCanvas &&
+            <>
+              <Link href="/canvas"><a>Canvas动画</a></Link>
+            </>
+          }
           {
             isHome &&
             <>

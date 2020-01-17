@@ -89,6 +89,7 @@ const Home = ({ initialPropsCounter, router, people }) => (
           <ul>
             <li><Link href="/cssimage"><a>css图形</a></Link></li>
             <li><Link href="/3dbutterfly"><a>3d蝴蝶</a></Link></li>
+            <li><Link href="/canvas"><a>canvas动画</a></Link></li>
           </ul>
         </div>
       </div>
