@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react'
+import Head from 'next/head'
 function run(eleRoom, eleIn, eleDeviceInfo) {
   console.log('eleDeviceInfo',eleDeviceInfo)
   var intRotateX = 0;
@@ -254,6 +255,11 @@ function About() {
   }, [])
   return (
     <div style={{userSelect:'none'}}>
+      <Head>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+      </Head>
       <div className="b5">
         <div className="c0" ref={c0El}>
           <div className="c1">
@@ -285,10 +291,12 @@ function About() {
           position:absolute;
           top:0;
           left:50%;
-          margin-left:-320px;
           width:640px;
           height:972px;
+          max-width: 100%;
+          max-height: 100%;
           overflow:hidden;
+          transform: translateX(-50%);
         }
         .c0{
           position:absolute;
@@ -359,6 +367,7 @@ function About() {
           height:50px;
           line-height:25px;
           font-size:20px;
+          text-align: center;
           z-index: 10;
         }
         .a1 p{
