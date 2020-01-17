@@ -1,15 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
-import Nav from '../components/nav'
 import ReadMore from '../components/readmore'
 import Link from 'next/link'
 import Router, { withRouter } from 'next/router'
 import LinkButton from '../components/mybutton'
 import { format } from 'url'
 import Person from '../components/Person'
-import fetch from 'isomorphic-unfetch'
 import styled from 'styled-components'
-import { CURRENT_URL } from '../utils/consts'
 
 const Title = styled.span`
   font-size: 50px;
@@ -24,88 +21,85 @@ const reload = () => {
 const incrementStateCounter = (router) => {
     const currentCounter = router.query.counter ? parseInt(router.query.counter) : 0
     if(currentCounter===10){
-      throw new Error('I crashed!')
+      // throw new Error('I crashed!')
     }
     const href = `/?counter=${currentCounter + 1}`
     Router.push(href, href, { shallow: true })
 }
 const Home = ({ initialPropsCounter, router, people }) => (
-    <div>
-        <Head>
-            <title>Home</title>
-            <link rel="icon" href="/favicon.ico" />
-        </Head>
-        {/* <Nav /> */}
-        <div className="hero">
-            <h1 className="title"><Title>欢迎!</Title></h1>
-            <p className="description">
-                已开始, 编辑 <code>pages/index.js</code> 页面并保存，会自动加载
-            </p>
-            <div className="shallow-routing">
-                <button onClick={()=>reload()}>重新加载</button>
-                <button onClick={()=>incrementStateCounter(router)}>改变Counter</button>
-                <p>getInitialProps 执行了 {initialPropsCounter} 次</p>
-                <p>Counter: {router.query.counter || 0}</p>
-            </div>
-            <div style={{textAlign:'center'}}>
-                <ul>
-                    <li><a href="/cowsayhi">CowsayHi</a></li>
-                    <li><Link href="/helloworld" replace><a>HelloWorld</a></Link></li>
-                    <li><Link href="/hithere"><img src="favicon.ico" alt="image" /></Link></li>
-                    <li><a href="/myimage">/myimage</a></li>
-                    <li><a href="/post/1">/post/1</a></li>
-                    <li><Link href={{ pathname: '/post/2', query: { name: 'zeit' } }}><a>/post/2</a></Link></li>
-                    <li><Link href="/post/[pid]" as="/post/abc"><a>/post/abc</a></Link></li>
-                    <li><a href="/post/pid/comment">/post/pid/comment</a></li>
-                    <li><a href="/head">/head</a></li>
-                    <li><a href="/fetch">/fetch</a></li>
-                    <li><a href="/posts">/posts</a></li>
-                    <li><LinkButton href="/helloua" /></li>
-                    <li><a href="/cookies">/cookies</a></li>
-                    <li><a href="/users">/users</a></li>
-                    <li><Link href="/a"><a>/a</a></Link></li>
-                    <li><Link href="/b"><a>/b</a></Link></li>
-                    <li><Link href="/blog?id=first" as="/blog/first"><a>/blog?id=first</a></Link></li>
-                    <li><Link href="/blog?id=second" as="/blog/second"><a>/blog?id=second</a></Link></li>
-                    <li><Link href="/blog?id=last" as="/blog/last"><a>/blog?id=last</a></Link></li>
-                    <li><Link scroll={false} href="/?counter=10"><a>不滚动</a></Link></li>
-                    <li><Link href="/?counter=10"><a>滚动到顶部</a></Link></li>
-                    <li><Link href="/dynamic"><a>动态页面</a></Link></li>
-                    <li><Link href="/error"><a>error</a></Link></li>
-                    <li><Link href="/faker"><a>faker</a></Link></li>
-                    <li><Link href="/scss"><a>scss</a></Link></li>
-                    <li><Link href="/babel"><a>babel</a></Link></li>
-                    <li><Link href="/customkey"><a>customkey</a></Link></li>
-                    <li style={{marginTop: 30}}><Link href="/graphql"><a>graphql</a></Link></li>
-                    <li><Link href="/protobuf"><a>protobuf</a></Link></li>
-                    <li><Link href="/gif"><a>canvas2gif</a></Link></li>
-                    <li><Link href="/aslider"><a>滑块过渡</a></Link></li>
-                    <li><Link href="/graphics"><a>数学图形</a></Link></li>
-                    <li><Link href="/canvasround"><a>canvas圆角</a></Link></li>
-                    <li><Link href="/3d"><a>3d</a></Link></li>
-                    <li><ReadMore /></li>
-                    {
-                      people.map((p, i) => (
-                        <Person key={i} person={p} />
-                      ))
-                    }
-                </ul>
-                <div>
-                  <h3>收集</h3>
-                  <ul>
-                    <li><Link href="/cssimage"><a>css图形</a></Link></li>
-                    <li><Link href="/3dbutterfly"><a>3d蝴蝶</a></Link></li>
-                  </ul>
-                </div>
-            </div>
-            {/* <div className="row">
-                <a href="https://nextjs.org/docs" className="card">
-                    <h3>Documentation &rarr;</h3>
-                    <p>Learn more about Next.js in the documentation.</p>
-                </a>
-            </div> */}
+  <div>
+    <Head>
+      <title>主页</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    {/* <Nav /> */}
+    <div className="hero">
+      <h1 className="title"><Title>欢迎!</Title></h1>
+      <div className="shallow-routing">
+        <button onClick={()=>reload()}>重新加载</button>
+        <button onClick={()=>incrementStateCounter(router)}>改变计数器</button>
+        <p><a href="https://nextjs.org/docs/api-reference/data-fetching/getInitialProps" target="_blank">getInitialProps</a> 执行了 {initialPropsCounter} 次</p>
+        <p>计数器: {router.query.counter || 0}</p>
+      </div>
+      <div style={{textAlign:'center'}}>
+        <ul>
+          <li><Link href="/cowsayhi"><a>CowsayHi</a></Link></li>
+          {/* <li><Link href="/helloworld" replace><a>HelloWorld</a></Link></li> */}
+          <li style={{height: 30, width: 30, verticalAlign: 'middle', padding: '0 10px'}}>
+            <Link href="/hithere"><img src="favicon.ico" alt="image" style={{maxWidth: '100%', maxHeight: '100%'}} /></Link>
+          </li>
+          <li><Link href="/post"><a>post动态参数</a></Link></li>
+          <li><Link href="/fetch"><a>后端fetch数据</a></Link></li>
+          <li><LinkButton href="/helloua" /></li>
+          <li><a href="/cookies">后端cookies</a></li>
+          {/* <li><a href="/users">users</a></li> */}
+          {/* <li><Link href="/a"><a>/a</a></Link></li> */}
+          {/* <li><Link href="/b"><a>/b</a></Link></li> */}
+          <li><Link href="/blog"><a>传递参数</a></Link></li>
+          {/* <li><Link scroll={false} href="/?counter=10"><a>不滚动</a></Link></li>
+          <li><Link href="/?counter=10"><a>滚动到顶部</a></Link></li> */}
+          <li><Link href="/dynamic"><a>动态页面</a></Link></li>
+          {/* <li><Link href="/error"><a>error</a></Link></li> */}
+          {/* <li><Link href="/faker"><a>faker</a></Link></li> */}
+          <li><Link href="/scss"><a>scss</a></Link></li>
+          <li><Link href="/babel"><a>babel</a></Link></li>
+          <li><Link href="/customkey"><a>运行时信息</a></Link></li>
+          <li><ReadMore /></li>
+          {
+            people.map((p, i) => (
+              <Person key={i} person={p} />
+            ))
+          }
+        </ul>
+        <div>
+          <h3>演示</h3>
+          <ul>
+            <li><Link href="/graphql"><a>graphql</a></Link></li>
+            <li><Link href="/protobuf"><a>protobuf</a></Link></li>
+            <li><Link href="/gif"><a>canvas2gif</a></Link></li>
+            <li><Link href="/aslider"><a>滑块过渡</a></Link></li>
+            <li><Link href="/graphics"><a>数学图形</a></Link></li>
+            <li><Link href="/canvasround"><a>canvas圆角</a></Link></li>
+            <li><Link href="/3d"><a>3d</a></Link></li>
+            <li><Link href="/csscenter"><a>css居中</a></Link></li>
+          </ul>
         </div>
-        <style jsx>{`
+        <div>
+          <h3>收集</h3>
+          <ul>
+            <li><Link href="/cssimage"><a>css图形</a></Link></li>
+            <li><Link href="/3dbutterfly"><a>3d蝴蝶</a></Link></li>
+          </ul>
+        </div>
+      </div>
+      {/* <div className="row">
+          <a href="https://nextjs.org/docs" className="card">
+              <h3>Documentation &rarr;</h3>
+              <p>Learn more about Next.js in the documentation.</p>
+          </a>
+      </div> */}
+    </div>
+    <style jsx>{`
       .hero {
         width: 100%;
         color: #333;
@@ -118,8 +112,7 @@ const Home = ({ initialPropsCounter, router, people }) => (
         line-height: 1.15;
         font-size: 48px;
       }
-      .title,
-      .description {
+      .title {
         text-align: center;
       }
       .shallow-routing{
@@ -135,9 +128,15 @@ const Home = ({ initialPropsCounter, router, people }) => (
       }
       li a{
         display: inline-block;
-        background-color: #efdd9b;
+        background-color: #6f6e6b;
         border-radius: 3px;
         padding: 5px 10px;
+        text-decoration: none;
+        color: #cbc6f7;
+      }
+      li a:hover{
+        color:#f99;
+        background-color:#777;
       }
       ul, li{
         list-style:none;

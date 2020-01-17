@@ -1,6 +1,5 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import Header from '../components/Header'
 import dynamic from 'next/dynamic'
 
 const DynamicComponent1 = dynamic(import('../components/hello1'))
@@ -37,8 +36,6 @@ const DynamicPage = ({ showMore }) => {
 
   return (
     <div>
-      <Header />
-
       {/* Load immediately, but in a separate bundle */}
       <DynamicComponent1 />
 
@@ -53,7 +50,7 @@ const DynamicPage = ({ showMore }) => {
 
       {/* Load on demand */}
       {showMore && <DynamicComponent5 />}
-      <button onClick={handleToggle}>Toggle Show More</button>
+      <button onClick={handleToggle}>切换显示更多</button>
     </div>
   )
 }

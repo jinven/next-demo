@@ -1,1 +1,1 @@
-export default () => <p>Hello World 5 (imported dynamiclly) </p>
+export default () => <p>你好 5 (动态加入) </p>

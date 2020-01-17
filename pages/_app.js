@@ -66,9 +66,33 @@ export default class MyApp extends App {
           <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         </Head>
         <nav style={{ position: 'relative', zIndex: 99999 }}>
+          <style global jsx>{`
+            body {
+              margin: 0;
+            }
+          `}</style>
           <style jsx>{`
-            a {
+            :global(body) {
+              background-color: #bbb;
+            }
+            nav {
+              background-color: #333;
+              height: 30px;
+              line-height: 30px;
+              font-size: 15px;
+              padding: 0 10px;
+              box-shadow: rgba(0,0,0,1) 0 0 5px 0;
+            }
+            nav a {
               margin: 0 10px 0 0;
+              display: inline-block;
+              color: #eee;
+              text-decoration: none;
+              min-width: 70px;
+              text-align: center;
+            }
+            nav a:hover {
+              color: #999;
             }
           `}</style>
           <Link href="/">
