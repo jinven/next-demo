@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import App from 'next/app'
 import Link from 'next/link'
 import NProgress from 'nprogress'
@@ -41,7 +41,8 @@ export default class MyApp extends App {
   constructor(props){
     super(props)
     this.state = {
-      isHome: false
+      isHome: false,
+      isClient: false
     }
   }
   componentDidCatch(error, errorInfo) {
@@ -53,11 +54,21 @@ export default class MyApp extends App {
     // 此方法只在客户端调用
     isHome = ['','/','/index','/index/'].indexOf((window.location.pathname || '').toLocaleLowerCase())>=0
     console.log('_app.js componentDidMount', isHome)
-    this.setState({isHome: isHome})
+    this.setState({isHome: isHome, isClient: true})
+  }
+  componentDidUpdate() {
+    console.log('_app.js - componentDidUpdate')
+  }
+  componentWillUpdate() {
+    console.log('_app.js - componentWillUpdate')
   }
   render() {
     const { Component, pageProps } = this.props
-    isHome = this.state.isHome
+    if(this.state.isClient){
+      isHome = ['','/','/index','/index/'].indexOf((window.location.pathname || '').toLocaleLowerCase())>=0
+    } else {
+      isHome = this.state.isHome
+    }
     console.log('_app.js - render', isHome)
     return (
       <ThemeProvider theme={theme}>

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import fetch from 'isomorphic-unfetch'
-import { CURRENT_URL } from '../utils/consts'
 
 const serverQuery = JSON.stringify({ query: '{ users { name } }' })
 const clientQuery = JSON.stringify({ query: '{ hello, users { name } }'})
@@ -113,19 +112,18 @@ Query: {
   )
 }
 
-GraphqlPage.getInitialProps = async () => {
-  const response = await fetch(CURRENT_URL + 'api/graphql', {
+GraphqlPage.getInitialProps = async ({req}) => {
+  let url = req.headers['host']
+  const response = await fetch('http://' + (url || '') + '/api/graphql', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
     },
     body: serverQuery,
   })
-
   const {
     data: { users },
   } = await response.json()
-
   return { users }
 }
 

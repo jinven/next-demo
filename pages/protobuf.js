@@ -60,6 +60,7 @@ function ProtoBuf(){
       <style jsx>{`
         pre {
           border: 1px dashed #ccc;
+          overflow: auto;
         }
       `}</style>
     </div>

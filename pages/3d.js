@@ -362,10 +362,12 @@ function About() {
         }
         .a1{
           position: relative;
+          top: 36px;
           margin:0 auto;
           width:100%;
           height:50px;
           line-height:25px;
+          color: #999;
           font-size:20px;
           text-align: center;
           z-index: 10;
