@@ -113,7 +113,11 @@ Query: {
 }
 
 GraphqlPage.getInitialProps = async ({req}) => {
+  if(!req || !req.headers){
+    return { users: [] }
+  }
   let url = req.headers['host']
+  console.log('graphql.js getInitialProps', url)
   const response = await fetch('http://' + (url || '') + '/api/graphql', {
     method: 'POST',
     headers: {
@@ -128,3 +132,4 @@ GraphqlPage.getInitialProps = async ({req}) => {
 }
 
 export default GraphqlPage
+

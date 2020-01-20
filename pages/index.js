@@ -2,9 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import ReadMore from '../components/readmore'
 import Link from 'next/link'
-import Router, { withRouter } from 'next/router'
-import LinkButton from '../components/mybutton'
-import { format } from 'url'
+import { withRouter } from 'next/router'
 import Person from '../components/Person'
 import styled from 'styled-components'
 
@@ -13,20 +11,7 @@ const Title = styled.span`
   color: ${({ theme }) => theme.colors.primary};
   text-align: center;
 `
-let counter = 1
-const reload = () => {
-    const { pathname, query } = Router
-    Router.push(format({ pathname, query }))
-}
-const incrementStateCounter = (router) => {
-    const currentCounter = router.query.counter ? parseInt(router.query.counter) : 0
-    if(currentCounter===10){
-      // throw new Error('I crashed!')
-    }
-    const href = `/?counter=${currentCounter + 1}`
-    Router.push(href, href, { shallow: true })
-}
-const Home = ({ initialPropsCounter, router, people }) => (
+const Home = ({ people }) => (
   <div>
     <Head>
       <title>主页</title>
@@ -35,35 +20,19 @@ const Home = ({ initialPropsCounter, router, people }) => (
     {/* <Nav /> */}
     <div className="hero">
       <h1 className="title"><Title>欢迎!</Title></h1>
-      <div className="shallow-routing">
-        <button onClick={()=>reload()}>重新加载</button>
-        <button onClick={()=>incrementStateCounter(router)}>改变计数器</button>
-        <p><a href="https://nextjs.org/docs/api-reference/data-fetching/getInitialProps" target="_blank">getInitialProps</a> 执行了 {initialPropsCounter} 次</p>
-        <p>计数器: {router.query.counter || 0}</p>
-      </div>
       <div style={{textAlign:'center'}}>
         <ul>
-          <li><Link href="/cowsayhi"><a>CowsayHi</a></Link></li>
           {/* <li><Link href="/helloworld" replace><a>HelloWorld</a></Link></li> */}
           <li style={{height: 30, width: 30, verticalAlign: 'middle', padding: '0 10px'}}>
-            <Link href="/hithere"><img src="favicon.ico" alt="image" style={{maxWidth: '100%', maxHeight: '100%'}} /></Link>
+            <Link href="/next"><img src="favicon.ico" alt="image" style={{maxWidth: '100%', maxHeight: '100%', borderRadius: '50%', boxShadow: 'rgb(0,0,0) 0px 1px 6px 0', backgroundColor: '#8784a5'}} title="Next相关" /></Link>
           </li>
-          <li><Link href="/post"><a>post动态参数</a></Link></li>
-          <li><Link href="/fetch"><a>后端fetch数据</a></Link></li>
-          <li><LinkButton href="/helloua" /></li>
-          <li><a href="/cookies">后端cookies</a></li>
           {/* <li><a href="/users">users</a></li> */}
           {/* <li><Link href="/a"><a>/a</a></Link></li> */}
           {/* <li><Link href="/b"><a>/b</a></Link></li> */}
-          <li><Link href="/blog"><a>传递参数</a></Link></li>
           {/* <li><Link scroll={false} href="/?counter=10"><a>不滚动</a></Link></li>
           <li><Link href="/?counter=10"><a>滚动到顶部</a></Link></li> */}
-          <li><Link href="/dynamic"><a>动态页面</a></Link></li>
           {/* <li><Link href="/error"><a>error</a></Link></li> */}
           {/* <li><Link href="/faker"><a>faker</a></Link></li> */}
-          <li><Link href="/scss"><a>scss</a></Link></li>
-          <li><Link href="/babel"><a>babel</a></Link></li>
-          <li><Link href="/customkey"><a>运行时信息</a></Link></li>
           <li><ReadMore /></li>
           {
             people.map((p, i) => (
@@ -115,9 +84,6 @@ const Home = ({ initialPropsCounter, router, people }) => (
       }
       .title {
         text-align: center;
-      }
-      .shallow-routing{
-          text-align: center;
       }
       ul{
         max-width: 500px;
@@ -184,9 +150,7 @@ Home.getInitialProps = async ({ res }) => {
     // if(res){
     //     return { initialPropsCounter: 1, people: people || [] }
     // }
-    counter++
     return {
-        initialPropsCounter: counter,
         people: []
     }
 }

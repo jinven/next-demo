@@ -5,6 +5,7 @@ import NProgress from 'nprogress'
 import Router from 'next/router'
 import Head from 'next/head'
 import { ThemeProvider } from 'styled-components'
+import NavService from '../services/nav.service'
 
 const theme = {
   colors: {
@@ -72,9 +73,37 @@ export default class MyApp extends App {
   }
   render() {
     const { Component, pageProps } = this.props
+    let canvasSecond
     if (this.state.isClient) {
-      isHome = ['', '/', '/index', '/index/'].indexOf((window.location.pathname || '').toLocaleLowerCase()) >= 0
-      isCanvas = (window.location.pathname || '').indexOf('/canvas/') >= 0
+      let pathname = (window.location.pathname || '').toLocaleLowerCase()
+      isHome = ['', '/', '/index', '/index/'].indexOf(pathname.toLocaleLowerCase()) >= 0
+      isCanvas = pathname.indexOf('/canvas/') >= 0
+      if (isCanvas) {
+        canvasSecond = NavService.canvasSecond(pathname)
+        // if (pathname.indexOf('/canvas/3d/') >= 0) {
+        //   SecondLink = <Link href="/canvas/3d"><a>3d</a></Link>
+        // } else if (pathname.indexOf('/canvas/boundary/') >= 0) {
+        //   SecondLink = <Link href="/canvas/boundary"><a>边界与摩擦力</a></Link>
+        // } else if (pathname.indexOf('/canvas/easing/') >= 0) {
+        //   SecondLink = <Link href="/canvas/easing"><a>缓动与弹性动画</a></Link>
+        // } else if (pathname.indexOf('/canvas/impact/') >= 0) {
+        //   SecondLink = <Link href="/canvas/impact"><a>碰撞检测</a></Link>
+        // } else if (pathname.indexOf('/canvas/tri/') >= 0) {
+        //   SecondLink = <Link href="/canvas/tri"><a>三角函数与动画</a></Link>
+        // } else if (pathname.indexOf('/canvas/speed/') >= 0) {
+        //   SecondLink = <Link href="/canvas/speed"><a>速度与加速度</a></Link>
+        // } else if (pathname.indexOf('/canvas/gravity/') >= 0) {
+        //   SecondLink = <Link href="/canvas/gravity"><a>万有引力</a></Link>
+        // } else if (pathname.indexOf('/canvas/moving/') >= 0) {
+        //   SecondLink = <Link href="/canvas/moving"><a>移动物体</a></Link>
+        // } else if (pathname.indexOf('/canvas/snooker/') >= 0) {
+        //   SecondLink = <Link href="/canvas/snooker"><a>桌球运动</a></Link>
+        // } else if (pathname.indexOf('/canvas/coordinate/') >= 0) {
+        //   SecondLink = <Link href="/canvas/coordinate"><a>坐标旋转与角度反弹</a></Link>
+        // } else if (pathname.indexOf('/canvas/other/') >= 0) {
+        //   SecondLink = <Link href="/canvas/other"><a>其他</a></Link>
+        // }
+      }
     } else {
       isHome = this.state.isHome
       isCanvas = this.state.isCanvas
@@ -86,7 +115,7 @@ export default class MyApp extends App {
           {/* Import CSS for nprogress */}
           <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         </Head>
-        <nav style={{ position: 'relative', zIndex: 99999 }}>
+        <nav style={{ position: 'relative', zIndex: 99999, userSelect: 'none' }}>
           <style global jsx>{`
             body {
               margin: 0;
@@ -106,10 +135,11 @@ export default class MyApp extends App {
             }
             nav a {
               margin: 0 10px 0 0;
+              padding: 0 8px;
               display: inline-block;
               color: #eee;
               text-decoration: none;
-              min-width: 70px;
+              min-width: 60px;
               text-align: center;
             }
             nav a:hover {
@@ -123,6 +153,10 @@ export default class MyApp extends App {
             isCanvas &&
             <>
               <Link href="/canvas"><a>Canvas动画</a></Link>
+              {
+                canvasSecond &&
+                <Link href={canvasSecond.path}><a>{canvasSecond.name}</a></Link>
+              }
             </>
           }
           {
